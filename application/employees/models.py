@@ -3,7 +3,19 @@ from django.db import models
 from application.departament.models import Department
 
 
-# Create your models here.
+class Hability(models.Model):
+    hability = models.CharField("Habilidad", max_length=50, blank=True)
+
+    class Meta:
+        verbose_name = "Habilidad"
+        verbose_name_plural = "Habilidades"
+        ordering = ["hability"]
+        unique_together = ("hability",)
+
+    def __str__(self):
+        return f"{self.hability}"
+
+
 class Employee(models.Model):
 
     JOB_CHOICES = (
@@ -23,9 +35,18 @@ class Employee(models.Model):
         related_name="employees",
         verbose_name="Departamento",
     )
+    habilities = models.ManyToManyField(
+        Hability, related_name="employees_with_ability", verbose_name="Habilidades"
+    )
     # image = models.ImageField(
     #     "Imagen", upload_to="employees/", default="employees/default.png"
     # )
+
+    class Meta:
+        verbose_name = "Empleado"
+        verbose_name_plural = "Empleados"
+        ordering = ["job", "name", "last_name"]
+        unique_together = ("email", "phone")
 
     def __str__(self):
         return f"{self.name} {self.last_name}"
