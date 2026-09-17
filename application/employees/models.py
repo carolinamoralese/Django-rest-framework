@@ -2,6 +2,8 @@ from django.db import models
 
 from application.departament.models import Department
 
+from ckeditor.fields import RichTextField
+
 
 class Hability(models.Model):
     hability = models.CharField("Habilidad", max_length=50, blank=True)
@@ -38,6 +40,7 @@ class Employee(models.Model):
     habilities = models.ManyToManyField(
         Hability, related_name="employees_with_ability", verbose_name="Habilidades"
     )
+    cvdocument = RichTextField("Hoja de Vida", blank=True, null=True)
     # image = models.ImageField(
     #     "Imagen", upload_to="employees/", default="employees/default.png"
     # )

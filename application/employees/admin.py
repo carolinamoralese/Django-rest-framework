@@ -6,7 +6,7 @@ admin.site.register(Hability)
 
 
 class EmployeeAdmin(admin.ModelAdmin):
-    list_display = ("name", "last_name", "job", "department", "full_name")
+    list_display = ("id", "name", "last_name", "job", "department", "full_name")
     search_fields = ("name", "last_name", "email", "phone")
     list_filter = ("job", "department")
     filter_horizontal = ("habilities",)

@@ -1,0 +1,12 @@
+<h1>Habilidades empleados</h1>
+<form method="get" action="{% url 'employee_list_by_hability' %}">
+    <input type="text" id="id_employee" name="id_employee" placeholder="Ingrese el ID del empleado">
+    <button type="submit">Buscar</button>
+</form>
+
+<h1>Habilidades del empleado</h1>
+<ul>
+    {% for habilitie in habilities %}
+        <li>{{ habilitie }}
+    {% endfor %}
+</ul>
