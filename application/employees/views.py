@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.views.generic import ListView, DetailView
+from django.views.generic import ListView, DetailView, CreateView
 
 from .models import Employee, Hability
 
@@ -183,3 +183,9 @@ class EmployeeDetailView(DetailView):
         context = super().get_context_data(**kwargs)
         context["title"] = "empleado del mes"
         return context
+
+
+class EmployeeCreateView(CreateView):
+    model = Employee
+    template_name = "employees/add.html"
+    fields = ["name", "last_name", "job", "department", "habilities"]
